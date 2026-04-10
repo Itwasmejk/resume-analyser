@@ -42,7 +42,7 @@ const Resume = () => {
       if (!imageBlob) return;
       const imageUrl = URL.createObjectURL(imageBlob);
       setImageUrl(imageUrl);
-
+      console.log("FEEDBACK DATA:", JSON.stringify(data.feedback, null, 2));
       setFeedback(data.feedback);
       console.log({ resumeUrl, imageUrl, feedback: data.feedback });
     };
@@ -61,7 +61,7 @@ const Resume = () => {
         </Link>
       </nav>
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="feedback-section bg-[url('/images/bg-small.svg') bg-cover h-screen sticky top-0 items-center justify-center">
+        <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-screen sticky top-0 items-center justify-center">
           {imageUrl && resumeUrl && (
             <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">

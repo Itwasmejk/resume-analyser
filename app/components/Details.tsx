@@ -107,6 +107,9 @@ const CategoryContent = ({
 };
 
 const Details = ({ feedback }: { feedback: Feedback }) => {
+    if(!feedback?.toneAndStyle || !feedback?.content || !feedback?.structure || !feedback?.skills) {
+        return null;
+    }
   return (
       <div className="flex flex-col gap-4 w-full">
         <Accordion>

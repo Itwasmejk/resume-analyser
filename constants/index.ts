@@ -144,7 +144,7 @@ export const prepareInstructions = ({
   jobDescription: string;
   AIResponseFormat: string;
 }) =>
-  `You are an expert in ATS (Applicant Tracking System) and resume analysis.
+ `You are an expert in ATS (Applicant Tracking System) and resume analysis.
   Please analyze and rate this resume and suggest how to improve it.
   The rating can be low if the resume is bad.
   Be thorough and detailed. Don't be afraid to point out any mistakes or areas for improvement.
@@ -153,6 +153,8 @@ export const prepareInstructions = ({
   If provided, take the job description into consideration.
   The job title is: ${jobTitle}
   The job description is: ${jobDescription}
-  Provide the feedback using the following format: ${AIResponseFormat}
-  Return the analysis as a JSON object, without any other text and without the backticks.
-  Do not include any other text or comments.`;
+  
+  You MUST respond with ONLY a valid JSON object that EXACTLY matches this TypeScript interface — no extra fields, no snake_case keys, no markdown, no backticks, no explanation:
+  ${AIResponseFormat}
+  
+  The response must start with { and end with }. Any deviation from the interface will break the application.`;
