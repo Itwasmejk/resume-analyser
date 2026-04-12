@@ -321,7 +321,6 @@ export const usePuterStore = create<PuterStore>((set, get) => {
       setError("Puter.js not available");
       return;
     }
-    // return puter.ai.chat(prompt, imageURL, testMode, options);
     return puter.ai.chat(prompt, imageURL, testMode, options) as Promise<
       AIResponse | undefined
     >;
@@ -334,6 +333,8 @@ export const usePuterStore = create<PuterStore>((set, get) => {
       return;
     }
 
+    // FIX 1: Correct model name (was "claude-4-5-sonnet", correct is "claude-sonnet-4-5")
+    // FIX 2: Options must be passed as the 4th argument, not the 2nd (imageURL) argument
     return puter.ai.chat(
       [
         {
@@ -350,7 +351,9 @@ export const usePuterStore = create<PuterStore>((set, get) => {
           ],
         },
       ],
-      { model: "claude-sonnet-4" }
+      undefined,                        // imageURL — must be undefined, not the options object
+      false,                            // testMode
+      { model: "claude-sonnet-4-5" }   // options — correct model name and correct position
     ) as Promise<AIResponse | undefined>;
   };
 

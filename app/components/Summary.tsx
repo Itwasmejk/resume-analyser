@@ -25,7 +25,12 @@ const Category = ({ title, score }: { title: string; score: number }) => {
 };
 
 const Summary = ({ feedback }: { feedback: Feedback }) => {
-     if (!feedback?.toneAndStyle || !feedback?.content || !feedback?.structure || !feedback?.skills) {
+  if (
+    !feedback?.toneAndStyle ||
+    !feedback?.content ||
+    !feedback?.structure ||
+    !feedback?.skills
+  ) {
     return null;
   }
   return (

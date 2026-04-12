@@ -74,7 +74,7 @@ const Upload = () => {
         ? feedback.message.content
         : feedback.message.content[0].text;
 
-    data.feedback = JSON.parse(feedbackText);
+    data.feedback = JSON.parse(feedbackText.replace(/```json|```/g, "").trim());
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText("Analysis complete, redirecting...");
     console.log(data);
@@ -83,7 +83,7 @@ const Upload = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget.closest("form");
+    const form = e.currentTarget;
     if (!form) return;
     const formData = new FormData(form);
 
